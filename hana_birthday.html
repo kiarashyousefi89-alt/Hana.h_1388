@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>برای هانا ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#050205;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+#app{position:relative;min-height:100vh;overflow:hidden;background:radial-gradient(circle at center,#35000b 0,#100308 42%,#050205 100%);display:flex;align-items:center;justify-content:center;isolation:isolate}
+.bg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,35,60,.75) 0 1px,transparent 2px);background-size:55px 55px;opacity:.35;animation:move 18s linear infinite}
+@keyframes move{to{background-position:110px 110px}}
+.glow{position:absolute;width:380px;height:380px;border-radius:50%;background:#d50030;filter:blur(120px);opacity:.18;animation:glow 3s ease-in-out infinite alternate}
+@keyframes glow{to{transform:scale(1.25);opacity:.3}}
+.center{position:relative;z-index:5;text-align:center}
+.small{font-size:12px;letter-spacing:7px;color:#ff9baa;text-transform:uppercase;margin-bottom:18px;direction:ltr}
+.hana{font-size:clamp(70px,17vw,145px);font-weight:950;letter-spacing:-7px;direction:ltr;background:linear-gradient(120deg,#fff,#ff9aa9,#ff123f,#fff);background-size:300% auto;-webkit-background-clip:text;color:transparent;animation:shine 3s linear infinite,hanaFloat 2.8s ease-in-out infinite;filter:drop-shadow(0 0 25px rgba(255,20,60,.55));line-height:.9}
+@keyframes shine{to{background-position:300% center}}
+@keyframes hanaFloat{50%{transform:translateY(-10px) scale(1.025)}}
+.open{font-size:19px;font-weight:800;margin:25px 0 12px}
+.btn{border:0;border-radius:999px;padding:15px 34px;background:linear-gradient(135deg,#ff1744,#9e0025);color:#fff;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 0 35px rgba(255,20,60,.35);transition:.2s}
+.btn:hover{transform:scale(1.06)}
+.btn:disabled{opacity:.7;cursor:default}
+.msg{position:absolute;z-index:3;pointer-events:none;font-weight:900;white-space:nowrap;text-shadow:0 0 15px currentColor;animation:fall var(--d) linear forwards;left:var(--l);top:var(--t);font-size:var(--s);transform:rotate(var(--r));opacity:0}
+@keyframes fall{0%{opacity:0;transform:translateY(25px) rotate(var(--r)) scale(.7)}8%{opacity:.9}50%{opacity:.82}92%{opacity:.9}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(1.05)}}
+.burst{position:absolute;z-index:4;width:7px;height:7px;border-radius:50%;background:#ff244b;left:50%;top:50%;pointer-events:none;animation:burst 1.2s ease-out forwards}
+@keyframes burst{to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}}
+#done{position:absolute;z-index:7;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;pointer-events:none;opacity:0;transform:scale(.5);transition:1.2s}
+#done.show{opacity:1;transform:scale(1)}
+.doneText{font-size:clamp(38px,9vw,80px);font-weight:950;text-shadow:0 0 35px #ff1744;color:#ff3157;direction:ltr}
+.doneSub{font-size:20px;color:#fff;margin-top:10px}
+.status{font-size:12px;color:#a98289;margin-top:12px}
+@media(prefers-reduced-motion:reduce){.hana,.bg,.glow{animation:none}.msg{animation:none;opacity:.8}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="bg"></div><div class="glow"></div>
+  <main class="center">
+    <div class="small">A special day for</div>
+    <div class="hana">Hana</div>
+    <div class="open">سوپرایز رو باز کن</div>
+    <button class="btn" id="go" type="button">باز کردن ✨</button>
+    <div class="status" id="status" aria-live="polite"></div>
+  </main>
+  <div id="done"><div><div class="doneText">Hana</div><div class="doneSub">تولدت مبارک 🎂</div></div></div>
+</div>
+<script>
+(()=>{
+const r=document.getElementById('app'),b=document.getElementById('go'),s=document.getElementById('status'),d=document.getElementById('done');
+const words=['تولدت مبارک!','Happy Birthday!','عيد ميلاد سعيد!','Doğum günün kutlu olsun!','Joyeux anniversaire!','¡Feliz cumpleaños!','Alles Gute zum Geburtstag!','Buon compleanno!','お誕生日おめでとう！','生日快乐!'];
+let active=false;
+function burst(){
+ for(let i=0;i<100;i++){
+  let e=document.createElement('i');e.className='burst';
+  let a=Math.random()*6.28,n=70+Math.random()*390;
+  e.style.setProperty('--x',Math.cos(a)*n+'px');e.style.setProperty('--y',Math.sin(a)*n+'px');
+  e.style.animationDelay=Math.random()*.25+'s';r.appendChild(e);
+  setTimeout(()=>e.remove(),1500);
+ }
+}
+function add(){
+ let e=document.createElement('span');e.className='msg';
+ e.textContent=words[Math.floor(Math.random()*words.length)];
+ e.style.setProperty('--l',Math.random()*92+'%');
+ e.style.setProperty('--t',Math.random()*90+'%');
+ e.style.setProperty('--x',(Math.random()*160-80)+'px');
+ e.style.setProperty('--y',(Math.random()*180-90)+'px');
+ e.style.setProperty('--r',(Math.random()*34-17)+'deg');
+ e.style.setProperty('--s',(14+Math.random()*22)+'px');
+ e.style.setProperty('--d',(4+Math.random()*5)+'s');
+ e.style.color=Math.random()>.35?'#ff4563':'#ffb2bc';
+ r.appendChild(e);setTimeout(()=>e.remove(),9500);
+}
+b.addEventListener('click',()=>{
+ if(active)return;active=true;b.disabled=true;
+ s.textContent='✨ تبریک‌ها برای هانا شروع شدن...';burst();
+ let count=0;
+ const timer=setInterval(()=>{
+  for(let j=0;j<4;j++)add();
+  count++;
+  if(count>=150){
+   clearInterval(timer);
+   setTimeout(()=>{d.classList.add('show');burst();s.textContent='تولدت مبارک هانا!';},3000);
+  }
+ },180);
+});
+})();
+</script>
+</body>
+</html>
